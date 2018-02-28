@@ -1,0 +1,35 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+Vagrant.configure("2") do |config|
+	
+	config.vm.define "risksheep10" do |tugger10|
+		tugger10.vm.box = "ubuntu/xenial64"
+		tugger10.vm.hostname = "risksheep10"
+		tugger10.vm.network "private_network", ip: "192.168.33.10"
+		tugger10.vm.network "forwarded_port", guest: 27015, host: 27010
+		tugger10.vm.network "forwarded_port", guest: 22, host: 2210
+	end
+
+	config.vm.define "risksheep20" do |tugger20|
+		tugger20.vm.box = "ubuntu/xenial64"
+		tugger20.vm.hostname = "risksheep20"
+		tugger20.vm.network "private_network", ip: "192.168.33.20"
+		tugger20.vm.network "forwarded_port", guest: 27015, host: 27020
+		tugger20.vm.network "forwarded_port", guest: 22, host: 2220
+	end
+
+#	config.vm.define "risksheep30" do |tugger30|
+#		tugger30.vm.box = "freebsd/FreeBSD-11.1-RELEASE"
+#		tugger30.vm.box_version = "2017.07.21"
+#		tugger30.vm.hostname = "risksheep30"
+#		tugger30.vm.network "private_network", ip: "192.168.33.30"
+#		tugger30.vm.network "forwarded_port", guest: 2, host: 2230
+#		tugger30.ssh.shell = "sh"
+#		tugger30.vm.base_mac = "080027D14C66"
+#	end
+end
